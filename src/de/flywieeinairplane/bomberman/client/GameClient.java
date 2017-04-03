@@ -16,12 +16,12 @@ import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
 public class GameClient extends PApplet implements GameClientInterface, Serializable {
-    String serverHost = "localhost";
-    int serverPort = 9001;
-    String ownIP = "localhost";
+    String serverHost = "141.31.73.190";
+    int serverPort = 9123;
+    String ownIP = "141.31.73.190";
     int ownPort = 9005;
 
-    private String playerName = "PlayerName5";
+    private String playerName = "User";
     private Player player;
     private boolean win = false;
 

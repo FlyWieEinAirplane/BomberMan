@@ -11,13 +11,13 @@ import java.rmi.server.UnicastRemoteObject;
 public class MainServer {
     public static void main(String[] args) throws RemoteException {
 
-        LocateRegistry.createRegistry(9001);
+        LocateRegistry.createRegistry(9123);
         GameServer gameServer = new GameServer(19, 15);
-        GameServerInterface stub = (GameServerInterface) UnicastRemoteObject.exportObject(gameServer, 9001);
+        GameServerInterface stub = (GameServerInterface) UnicastRemoteObject.exportObject(gameServer, 9123);
         RemoteServer.setLog(System.out);
-        Registry registry = LocateRegistry.getRegistry("localhost", 9001);
+        Registry registry = LocateRegistry.getRegistry("141.31.73.190", 9123);
         registry.rebind("client", stub);
-        System.out.println("Server ist jetzt erreichbar");
+        System.out.println("Server is available");
 
     }
 
