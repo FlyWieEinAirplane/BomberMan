@@ -15,7 +15,7 @@ public class MainServer {
         GameServer gameServer = new GameServer(19, 15);
         GameServerInterface stub = (GameServerInterface) UnicastRemoteObject.exportObject(gameServer, 9123);
         RemoteServer.setLog(System.out);
-        Registry registry = LocateRegistry.getRegistry("141.31.73.190", 9123);
+        Registry registry = LocateRegistry.getRegistry("localhost", 9123);
         registry.rebind("client", stub);
         System.out.println("Server is available");
 

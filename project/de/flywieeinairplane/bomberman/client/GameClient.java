@@ -5,6 +5,9 @@ import de.flywieeinairplane.bomberman.server.GameServerInterface;
 import de.flywieeinairplane.bomberman.exceptions.GameFullException;
 import processing.core.PApplet;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.Serializable;
 import java.rmi.AlreadyBoundException;
 import java.rmi.ConnectException;
@@ -18,10 +21,10 @@ import java.util.ArrayList;
 public class GameClient extends PApplet implements GameClientInterface, Serializable {
     String serverHost = "141.31.73.190";
     int serverPort = 9123;
-    String ownIP = "141.31.73.190";
+    String ownIP = "localhost";
     int ownPort = 9005;
 
-    private String playerName = "User";
+    private String playerName = "";
     private Player player;
     private boolean win = false;
 
@@ -34,6 +37,14 @@ public class GameClient extends PApplet implements GameClientInterface, Serializ
 
 
     public GameClient() throws RemoteException, NotBoundException {
+
+        System.out.println("Plaese enter your Playername");
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        try {
+            this. playerName = br.readLine();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         LocateRegistry.createRegistry(ownPort);
         GameClientInterface clientStub = (GameClientInterface) UnicastRemoteObject.exportObject(this, ownPort);
